@@ -1,6 +1,6 @@
-# .NET Dev Container Repository
+# Node.js Dev Container Repository
 
-This repository is a Dev Container for .NET.
+This repository is a Dev Container for Node.js.
 
 ## Overview
 
