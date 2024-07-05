@@ -18,6 +18,7 @@
         "GitHub.github-vscode-theme",
         "EditorConfig.EditorConfig",
         "eamodio.gitlens",
+        "ms-vscode.vscode-typescript-next",
         "redhat.vscode-xml",
         "redhat.vscode-yaml"
       ]
