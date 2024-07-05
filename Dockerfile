@@ -1,6 +1,6 @@
 # Copyright (c) 2024 RFull Development
 # This source code is managed under the MIT license. See LICENSE in the project root.
-FROM node:20-bookworm
+FROM node:lts
 
 # Install dependencies
 RUN apt update && \
