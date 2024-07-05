@@ -1,14 +1,14 @@
-# Dev Containers Template Repository
+# .NET Dev Container Repository
 
-This repository is a template for Dev Containers.
+This repository is a Dev Container for .NET.
 
 ## Overview
 
 | Type | Summary |
 | --- | --- |
-| Base image and tags | base image name |
+| Base image and tags | node:lts |
 | Target platform | linux/x64, linux/arm64 |
-| Container registry's URL | https://hub.docker.com/r/owner/repository/ |
+| Container registry's URL | https://hub.docker.com/r/ryotafunaki/devcontainer-nodejs/ |
 
 ## How to use
 
