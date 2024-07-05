@@ -6,7 +6,7 @@ This repository is a Dev Container for Node.js.
 
 | Type | Summary |
 | --- | --- |
-| Base image and tags | node:20-bookworm |
+| Base image and tags | node:lts |
 | Target platform | linux/x64, linux/arm64 |
 | Container registry's URL | https://hub.docker.com/r/ryotafunaki/devcontainer-nodejs/ |
 
