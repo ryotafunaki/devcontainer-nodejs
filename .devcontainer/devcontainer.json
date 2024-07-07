@@ -3,7 +3,6 @@
 {
   "name": "Node.js Dev Container",
   "image": "ryotafunaki/devcontainer-nodejs:lts",
-  "remoteUser": "developer",
   "customizations": {
     "vscode": {
       "extensions": [
