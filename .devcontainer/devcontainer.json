@@ -2,7 +2,7 @@
 // This source code is managed under the MIT license. See LICENSE in the project root.
 {
   "name": "Node.js Dev Container",
-  "image": "ryotafunaki/devcontainer-nodejs:sdk-20",
+  "image": "ryotafunaki/devcontainer-nodejs:sdk-20-next",
   "customizations": {
     "vscode": {
       "extensions": [
