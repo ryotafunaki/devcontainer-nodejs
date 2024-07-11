@@ -2,10 +2,25 @@
 # This source code is managed under the MIT license. See LICENSE in the project root.
 FROM ryotafunaki/devcontainer-nodejs:sdk-20
 
-# Switch to root user to install global packages
-# NOTE: sudo is not working in this image
+# Install development tools for root
 USER root
-RUN npm install -g create-next-app
+WORKDIR /root
+COPY ./root_shells/ ./shells/
+RUN cd ./shells && \
+    chmod +x install.sh && \
+    ./install.sh && \
+    cd ..
+RUN rm -rf ./shells
 
-# Switch back to non-root user
+# Switch to the non-root user
+ARG USER_NAME=developer
 USER ${USER_NAME}
+WORKDIR /home/${USER_NAME}
+
+# Install development tools for non-root
+COPY --chown=${USER_NAME}:${USER_NAME} ./user_shells/ ./shells/
+RUN cd ./shells && \
+    chmod +x install.sh && \
+    ./install.sh && \
+    cd ..
+RUN rm -rf ./shells
