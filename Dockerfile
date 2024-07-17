@@ -24,3 +24,6 @@ RUN cd ./shells && \
     ./install.sh && \
     cd ..
 RUN rm -rf ./shells
+
+# MEMO: This user is temporary. The remote user is not working in the Dev Container.
+USER node
