@@ -25,5 +25,16 @@ RUN cd ./shells && \
     cd ..
 RUN rm -rf ./shells
 
+USER root
+
+# Clean up
+RUN apt clean && \
+    rm -rf /var/lib/apt/lists/*
+RUN rm -rf /tmp/* && \
+    rm -rf /var/tmp/*
+
+USER ${USER_NAME}
+WORKDIR /home/${USER_NAME}
+
 # MEMO: This user is temporary. The remote user is not working in the Dev Container.
 USER node
