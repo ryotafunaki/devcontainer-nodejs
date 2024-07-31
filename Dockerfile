@@ -7,9 +7,12 @@ RUN apt update && \
     apt install -y sudo gnupg2
 
 # Create a non-root user
-ARG USER_NAME=developer
-RUN useradd -m ${USER_NAME} -s /bin/bash
-RUN echo "$USER_NAME ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
+# ARG USER_NAME=developer
+# RUN useradd -m ${USER_NAME} -s /bin/bash
+# RUN echo "$USER_NAME ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
+
+# MEMO: This user is temporary. The remote user is not working in the Dev Container.
+ARG USER_NAME=node
 
 # Install development tools for root
 COPY ./root_shells/ ./shells/
@@ -20,11 +23,8 @@ RUN cd ./shells && \
 RUN rm -rf ./shells
 
 # Switch to the non-root user
-# USER ${USER_NAME}
-# WORKDIR /home/${USER_NAME}
-# MEMO: This user is temporary. The remote user is not working in the Dev Container.
-USER node
-WORKDIR /home/node
+USER ${USER_NAME}
+WORKDIR /home/${USER_NAME}
 
 # Install development tools for non-root
 COPY --chown=${USER_NAME}:${USER_NAME} ./user_shells/ ./shells/
@@ -44,7 +44,3 @@ RUN rm -rf /tmp/* && \
 
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
-
-# MEMO: This user is temporary. The remote user is not working in the Dev Container.
-USER node
-WORKDIR /home/node
