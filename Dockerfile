@@ -12,13 +12,13 @@ RUN cd ./shells && \
     cd ..
 RUN rm -rf ./shells
 
+# MEMO: This user is temporary. The remote user is not working in the Dev Container.
+ARG USER_NAME=node
+
 # Switch to the non-root user
 # ARG USER_NAME=developer
-# USER ${USER_NAME}
-# WORKDIR /home/${USER_NAME}
-# MEMO: This user is temporary. The remote user is not working in the Dev Container.
-USER node
-WORKDIR /home/node
+USER ${USER_NAME}
+WORKDIR /home/${USER_NAME}
 
 # Install development tools for non-root
 COPY --chown=${USER_NAME}:${USER_NAME} ./user_shells/ ./shells/
@@ -36,9 +36,5 @@ RUN apt clean && \
 RUN rm -rf /tmp/* && \
     rm -rf /var/tmp/*
 
-# USER ${USER_NAME}
-# WORKDIR /home/${USER_NAME}
-
-# MEMO: This user is temporary. The remote user is not working in the Dev Container.
-USER node
-WORKDIR /home/node
+USER ${USER_NAME}
+WORKDIR /home/${USER_NAME}
