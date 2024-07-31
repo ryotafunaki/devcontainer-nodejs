@@ -20,8 +20,11 @@ RUN cd ./shells && \
 RUN rm -rf ./shells
 
 # Switch to the non-root user
-USER ${USER_NAME}
-WORKDIR /home/${USER_NAME}
+# USER ${USER_NAME}
+# WORKDIR /home/${USER_NAME}
+# MEMO: This user is temporary. The remote user is not working in the Dev Container.
+USER node
+WORKDIR /home/node
 
 # Install development tools for non-root
 COPY --chown=${USER_NAME}:${USER_NAME} ./user_shells/ ./shells/
@@ -44,3 +47,4 @@ WORKDIR /home/${USER_NAME}
 
 # MEMO: This user is temporary. The remote user is not working in the Dev Container.
 USER node
+WORKDIR /home/node
