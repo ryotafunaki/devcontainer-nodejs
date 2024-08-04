@@ -11,18 +11,4 @@ for file in $TARGET_FILES; do
         exit 1
     fi
 done
-
-# Add the following to the .bash_profile file
-cat << EOT >> ~/.bash_profile
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "\$HOME/.local/bin" ] ; then
-    PATH="\$HOME/.local/bin:\$PATH"
-fi
-
-# Add .NET tools to the PATH
-if [ -d "\$HOME/.dotnet/tools" ]; then
-    export PATH="\$PATH:\$HOME/.dotnet/tools"
-fi
-EOT
 exit 0

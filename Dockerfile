@@ -1,20 +1,10 @@
 # Copyright (c) 2024 RFull Development
 # This source code is managed under the MIT license. See LICENSE in the project root.
-FROM node:22-bookworm
-
-# Install dependencies
-RUN apt update && \
-    apt install -y sudo gnupg2
-
-# Create a non-root user
-# ARG USER_NAME=developer
-# RUN useradd -m ${USER_NAME} -s /bin/bash
-# RUN echo "$USER_NAME ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
-
-# MEMO: This user is temporary. The remote user is not working in the Dev Container.
-ARG USER_NAME=node
+FROM ryotafunaki/devcontainer-nodejs:sdk-22
 
 # Install development tools for root
+USER root
+WORKDIR /root
 COPY ./root_shells/ ./shells/
 RUN cd ./shells && \
     chmod +x install.sh && \
@@ -22,7 +12,11 @@ RUN cd ./shells && \
     cd ..
 RUN rm -rf ./shells
 
+# MEMO: This user is temporary. The remote user is not working in the Dev Container.
+ARG USER_NAME=node
+
 # Switch to the non-root user
+# ARG USER_NAME=developer
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
