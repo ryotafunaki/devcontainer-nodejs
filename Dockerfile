@@ -14,6 +14,7 @@ RUN rm -rf ./shells
 
 # MEMO: This user is temporary. The remote user is not working in the Dev Container.
 ARG USER_NAME=node
+RUN echo "$USER_NAME ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
 
 # Switch to the non-root user
 # ARG USER_NAME=developer
