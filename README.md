@@ -9,7 +9,7 @@ This repository is a Dev Container for Node.js.
 | Base image and tags | node:*tag* |
 | Target platform | linux/x64, linux/arm64 |
 | Container registry's URL | https://hub.docker.com/r/ryotafunaki/devcontainer-nodejs/ |
-| Installed packages | .NET SDK 8.0, Kiota, create-next-app |
+| Installed packages | .NET SDK 8.0, Kiota, Rust, wasm-pack, create-next-app |
 
 ## How to use
 
