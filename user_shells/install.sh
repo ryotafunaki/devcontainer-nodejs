@@ -25,4 +25,9 @@ if [ -d "\$HOME/.dotnet/tools" ]; then
     export PATH="\$PATH:\$HOME/.dotnet/tools"
 fi
 EOT
+
+# Add Rust to the PATH
+if [ -f "$HOME/.cargo/env" ]; then
+    source $HOME/.cargo/env
+fi
 exit 0

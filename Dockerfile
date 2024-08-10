@@ -13,6 +13,7 @@ RUN apt update && \
 
 # MEMO: This user is temporary. The remote user is not working in the Dev Container.
 ARG USER_NAME=node
+RUN echo "$USER_NAME ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
 
 # Install development tools for root
 COPY ./root_shells/ ./shells/
