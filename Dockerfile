@@ -5,7 +5,7 @@ FROM ryotafunaki/devcontainer-nodejs:sdk-20
 # Install development tools for root
 USER root
 WORKDIR /root
-COPY ./root_shells/ ./shells/
+COPY ./shells/root/ ./shells/
 RUN cd ./shells && \
     chmod +x install.sh && \
     ./install.sh && \
@@ -21,7 +21,7 @@ USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
 # Install development tools for non-root
-COPY --chown=${USER_NAME}:${USER_NAME} ./user_shells/ ./shells/
+COPY --chown=${USER_NAME}:${USER_NAME} ./shells/user/ ./shells/
 RUN cd ./shells && \
     chmod +x install.sh && \
     ./install.sh && \
