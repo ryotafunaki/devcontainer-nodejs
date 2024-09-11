@@ -4,7 +4,7 @@ FROM node:22-bookworm
 
 # Install dependencies
 RUN apt update && \
-    apt install -y sudo gnupg2
+    apt install -y sudo git gnupg2 vim curl lsb-release
 
 # Create a non-root user
 # ARG USER_NAME=developer
@@ -16,7 +16,7 @@ ARG USER_NAME=node
 RUN echo "$USER_NAME ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
 
 # Install development tools for root
-COPY ./root_shells/ ./shells/
+COPY ./shells/root/ ./shells/
 RUN cd ./shells && \
     chmod +x install.sh && \
     ./install.sh && \
@@ -28,7 +28,7 @@ USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
 # Install development tools for non-root
-COPY --chown=${USER_NAME}:${USER_NAME} ./user_shells/ ./shells/
+COPY --chown=${USER_NAME}:${USER_NAME} ./shells/user/ ./shells/
 RUN cd ./shells && \
     chmod +x install.sh && \
     ./install.sh && \
