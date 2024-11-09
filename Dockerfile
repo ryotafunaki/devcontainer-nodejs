@@ -7,7 +7,7 @@ USER root
 WORKDIR /root
 COPY ./shells/root/ ./shells/
 RUN cd ./shells && \
-    chmod +x install.sh && \
+    chmod +x *.sh && \
     ./install.sh && \
     cd ..
 RUN rm -rf ./shells
@@ -23,7 +23,7 @@ WORKDIR /home/${USER_NAME}
 # Install development tools for non-root
 COPY --chown=${USER_NAME}:${USER_NAME} ./shells/user/ ./shells/
 RUN cd ./shells && \
-    chmod +x install.sh && \
+    chmod +x *.sh && \
     ./install.sh && \
     cd ..
 RUN rm -rf ./shells
