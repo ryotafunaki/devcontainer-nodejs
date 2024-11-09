@@ -14,7 +14,7 @@ ARG LOCALE=en_US.UTF-8
 COPY ./shells/root/ ./shells/
 RUN cd ./shells && \
     chmod +x *.sh && \
-    # ./create_user.sh ${USER_NAME} && \
+    ./create_user.sh ${USER_NAME} && \
     ./setup_locale.sh ${LOCALE} && \
     ./install.sh && \
     cd ..
