@@ -4,21 +4,18 @@ FROM node:20-bookworm
 
 # Install dependencies
 RUN apt update && \
-    apt install -y sudo git gnupg2 vim curl lsb-release
-
-# Create a non-root user
-# ARG USER_NAME=developer
-# RUN useradd -m ${USER_NAME} -s /bin/bash
-# RUN echo "$USER_NAME ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
-
+    apt install -y sudo git gnupg2 vim curl lsb-release locales
 # MEMO: This user is temporary. The remote user is not working in the Dev Container.
 ARG USER_NAME=node
-RUN echo "$USER_NAME ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USER_NAME}
 
 # Install development tools for root
+# ARG USER_NAME=developer
+ARG LOCALE=en_US.UTF-8
 COPY ./shells/root/ ./shells/
 RUN cd ./shells && \
-    chmod +x install.sh && \
+    chmod +x *.sh && \
+    ./create_user.sh ${USER_NAME} && \
+    ./setup_locale.sh ${LOCALE} && \
     ./install.sh && \
     cd ..
 RUN rm -rf ./shells
@@ -30,7 +27,7 @@ WORKDIR /home/${USER_NAME}
 # Install development tools for non-root
 COPY --chown=${USER_NAME}:${USER_NAME} ./shells/user/ ./shells/
 RUN cd ./shells && \
-    chmod +x install.sh && \
+    chmod +x *.sh && \
     ./install.sh && \
     cd ..
 RUN rm -rf ./shells
